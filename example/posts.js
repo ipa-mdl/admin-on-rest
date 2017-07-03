@@ -21,7 +21,9 @@ import {
     NumberInput,
     ReferenceArrayField,
     ReferenceManyField,
+    EmbeddedArrayInput,
     ReferenceArrayInput,
+    EmbeddedManyInput,
     Responsive,
     RichTextField,
     SaveButton,
@@ -177,6 +179,12 @@ export const PostEdit = ({ ...props }) => (
                         <EditButton />
                     </Datagrid>
                 </ReferenceManyField>
+            </FormTab>
+            <FormTab label="post.form.links">
+                <EmbeddedArrayInput source="links">
+                    <LongTextInput source="url" />
+                    <LongTextInput source="context" />
+                </EmbeddedArrayInput>
             </FormTab>
         </TabbedForm>
     </Edit>
