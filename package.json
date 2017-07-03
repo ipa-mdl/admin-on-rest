@@ -6,6 +6,7 @@
     "*.md",
     "docs/*.md",
     "lib",
+    "Makefile",
     "src"
   ],
   "main": "lib/index",
