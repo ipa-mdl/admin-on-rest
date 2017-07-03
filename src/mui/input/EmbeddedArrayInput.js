@@ -7,7 +7,7 @@ import ContentCreateIcon from 'material-ui/svg-icons/content/create';
 import ActionDeleteIcon from 'material-ui/svg-icons/action/delete';
 import Divider from 'material-ui/Divider';
 
-import EmbeddedArrayInputFormField from './EmbeddedArrayInputFormField';
+import EmbeddedArrayInputFormField from '../form/EmbeddedArrayInputFormField';
 
 const styles = {
     container: {
@@ -43,52 +43,62 @@ const styles = {
  * );
  */
 export class EmbeddedArrayInput extends Component {
-
-    renderListItem = ({ fields, inputs, member, index }) => {
-        const removeElement = () => fields.remove(index);
+    renderListItem = ({ items, inputs, member, index }) => {
+        const removeItem = () => items.remove(index);
         return (
             <div className="EmbeddedArrayInputItemContainer">
                 <div style={styles.container}>
-                    {
-                        React.Children.map(inputs, input => input && (
-                            <div key={input.props.source} className={`aor-input-${input.props.source}`} style={input.props.style}>
-                                <EmbeddedArrayInputFormField input={input} prefix={member} />
+                    {React.Children.map(
+                        inputs,
+                        input =>
+                            input &&
+                            <div
+                                key={input.props.source}
+                                className={`aor-input-${input.props.source}`}
+                                style={input.props.style}
+                            >
+                                <EmbeddedArrayInputFormField
+                                    input={input}
+                                    prefix={member}
+                                />
                             </div>
-                        ))
-                    }
+                    )}
                 </div>
                 <FlatButton
                     primary
                     label="Remove"
                     style={styles.removeButton}
                     icon={<ActionDeleteIcon />}
-                    onClick={removeElement}
+                    onClick={removeItem}
                 />
             </div>
         );
     };
 
-
-    renderList = ({ fields }) => {
+    renderList = ({ fields: items }) => {
         const { children, elStyle } = this.props;
+        const createItem = () => items.push();
         return (
             <div className="EmbeddedArrayInputContainer" style={elStyle}>
                 <div>
-                    {
-                        fields.map((member, index) => (
-                            <div key={index}>
-                                { this.renderListItem({ fields, inputs: children, member, index }) }
-                                { index < fields.length - 1 && <Divider /> }
-                            </div>
-                        ))
-                    }
+                    {items.map((member, index) =>
+                        <div key={index}>
+                            {this.renderListItem({
+                                items,
+                                inputs: children,
+                                member,
+                                index,
+                            })}
+                            {index < items.length - 1 && <Divider />}
+                        </div>
+                    )}
                 </div>
                 <br />
                 <FlatButton
                     primary
                     icon={<ContentCreateIcon />}
                     label="Add"
-                    onClick={() => fields.push({})}
+                    onClick={createItem}
                 />
             </div>
         );
@@ -119,7 +129,7 @@ EmbeddedArrayInput.propTypes = {
 EmbeddedArrayInput.defaultProps = {
     addField: false,
     allowEmpty: true,
-    addLabel: false
+    addLabel: false,
 };
 
 export default EmbeddedArrayInput;
