@@ -13,7 +13,7 @@ const styles = {
     container: {
         padding: '0 1em 1em 1em',
         width: '90%',
-        display: 'inline-block',
+        display: 'inline-flex',
     },
     removeButton: {
         float: 'right',
