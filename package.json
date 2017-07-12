@@ -12,7 +12,8 @@
   ],
   "main": "lib/index",
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "prepare": "make build"
   },
   "authors": [
     "François Zaninotto"
