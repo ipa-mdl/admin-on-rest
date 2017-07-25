@@ -92,6 +92,7 @@ export class EmbeddedArrayInput extends Component {
         allowEmpty: true,
         allowAdd: true,
         allowRemove: true,
+        disabled: false,
         labelAdd: 'aor.input.embedded_array.add',
         labelRemove: 'aor.input.embedded_array.remove',
     };
