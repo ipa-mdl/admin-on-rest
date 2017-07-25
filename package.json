@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "description": "A frontend Framework for building admin applications on top of REST services, using ES6, React and Material UI",
   "files": [
+    ".babelrc",
     "*.md",
     "docs/*.md",
     "lib",
@@ -10,6 +11,7 @@
   ],
   "main": "lib/index",
   "scripts": {
+    "prepare": "make build",
     "test": "make test"
   },
   "authors": [
